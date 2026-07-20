@@ -1,81 +1,135 @@
+
+Mateo García <mateogarciarlrb@gmail.com>
+6:23 PM (0 minutes ago)
+to me
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Subir Video o Presentación</title>
-
+<title>Mi Galería Escolar - 6 Materias</title>
 <style>
-body{
-font-family: Arial, sans-serif;
-background:#f4f4f4;
-text-align:center;
-margin:0;
-padding:40px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-.container{
-max-width:700px;
-margin:auto;
-background:white;
-padding:25px;
-border-radius:12px;
-box-shadow:0 0 10px rgba(0,0,0,.2);
+body {
+font-family: 'Poppins', sans-serif;
+margin: 0;
+padding: 40px 20px;
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+min-height: 100vh;
+text-align: center;
 }
-
-input{
-margin:20px 0;
+h1 {
+color: #fff;
+margin-bottom: 40px;
+font-size: 2.5em;
+font-weight: 700;
+text-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
-
-video,iframe{
-width:100%;
-height:500px;
-border:none;
-margin-top:20px;
+.galeria {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+gap: 30px;
+max-width: 1300px;
+margin: 0 auto;
+}
+.item {
+background: rgba(255, 255, 255, 0.95);
+padding: 20px;
+border-radius: 6px; /* menos curvo */
+backdrop-filter: blur(10px);
+box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+display: flex;
+flex-direction: column;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+border: 1px solid rgba(255,255,255,0.2);
+}
+.item:hover {
+transform: translateY(-8px);
+box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+}
+.materia {
+font-weight: 600;
+background: linear-gradient(90deg, #667eea, #764ba2);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+margin-bottom: 15px;
+text-align: left;
+font-size: 1.2em;
+text-transform: uppercase;
+letter-spacing: 1px;
+border-bottom: 3px solid #667eea;
+padding-bottom: 8px;
+}
+img, video {
+width: 100%;
+height: 240px;
+object-fit: cover;
+border-radius: 4px; /* esquinas más cuadradas */
+box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+transition: transform 0.3s ease;
+}
+img:hover, video:hover {
+transform: scale(1.03);
+}
+p {
+margin-top: 15px;
+color: #444;
+font-size: 1em;
+line-height: 1.5;
+font-weight: 400;
 }
 </style>
-
 </head>
 <body>
 
-<div class="container">
-<h1>Sube tu Video o Presentación</h1>
+<h1>Mis Contenidos de Clase</h1>
 
-<input type="file" id="archivo" accept=".mp4,.mov,.webm,.pdf">
-
-<div id="visor"></div>
-
+<div class="galeria">
+<!-- 1. MATEMÁTICA (IMAGEN) -->
+<div class="item">
+<div class="materia">Materia: Matemática</div>
+<img src="matematica.jpg" alt="Gráficas y fórmulas">
+<p>Fórmulas de álgebra y ecuaciones cuadráticas.</p>
 </div>
 
-<script>
-const archivo=document.getElementById("archivo");
-const visor=document.getElementById("visor");
+<!-- 2. HISTORIA (VIDEO) -->
+<div class="item">
+<div class="materia">Materia: Historia</div>
+<video src="historico.mp4" controls></video>
+<p>Resumen visual de la Segunda Guerra Mundial.</p>
+</div>
 
-archivo.addEventListener("change",function(){
+<!-- 3. CIENCIAS (IMAGEN) -->
+<div class="item">
+<div class="materia">Materia: Ciencias</div>
+<img src="ciencias.jpg" alt="Laboratorio de química">
+<p>Experimento de la tabla periódica y elementos.</p>
+</div>
 
-visor.innerHTML="";
+<!-- 4. LITERATURA (VIDEO) -->
+<div class="item">
+<div class="materia">Materia: Literatura</div>
+<video src="literatura.mp4" controls></video>
+<p>Análisis literario de poemas del Siglo de Oro.</p>
+</div>
 
-const file=this.files[0];
-if(!file) return;
+<!-- 5. GEOGRAFÍA (IMAGEN) -->
+<div class="item">
+<div class="materia">Materia: Geografía</div>
+<img src="geografia.jpg" alt="Mapa mundial">
+<p>Estudio de los relieves y climas continentales.</p>
+</div>
 
-const url=URL.createObjectURL(file);
-
-if(file.type.startsWith("video/")){
-visor.innerHTML=`
-<video controls>
-<source src="${url}" type="${file.type}">
-</video>
-`;
-}else if(file.type==="application/pdf"){
-visor.innerHTML=`
-<iframe src="${url}"></iframe>
-`;
-}else{
-visor.innerHTML="<p>Formato no compatible.</p>";
-}
-
-});
-</script>
+<!-- 6. INGLÉS (VIDEO) -->
+<div class="item">
+<div class="materia">Materia: Inglés</div>
+<video src="ingles.mp4" controls></video>
+<p>Práctica de pronunciación y verbos irregulares.</p>
+</div>
+</div>
 
 </body>
 </html>
